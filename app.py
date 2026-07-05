@@ -25,9 +25,10 @@ with st.sidebar:
     "Upload a Document", 
     type=["pdf", "txt", "docx", "csv", "md", "html", "json", "pptx"]
     )
-    file_extension = pathlib.Path(uploaded_file.name).suffix
+    
     
     if uploaded_file and not st.session_state.document_uploaded:
+        file_extension = pathlib.Path(uploaded_file.name).suffix
         with st.spinner("Encrypting and Indexing..."):
             # Streamlit uploads are stored in RAM. We need to save it to a temporary file 
             # so LlamaIndex (SimpleDirectoryReader) can read it from the hard drive.
